@@ -5,6 +5,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 
+import path from 'path'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -15,10 +17,7 @@ export default defineConfig({
         'vue',
         {
           'naive-ui': [
-            'useDialog',
             'createDiscreteApi',
-            'useNotification',
-            'useLoadingBar'
           ]
         }
       ]
@@ -27,4 +26,10 @@ export default defineConfig({
       resolvers: [NaiveUiResolver()]
     })
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@com': path.resolve(__dirname, 'src/components'),
+    }
+  }
 })

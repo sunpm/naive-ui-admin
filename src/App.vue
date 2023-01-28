@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const {message} = createDiscreteApi(['message'])
+import Demo from '@com/Demo.vue'
 const showMsg = () => {
-  message.info('Hello World')
+  const {message} = createDiscreteApi(['message'])
+  message.success('Hello World')
 }
 </script>
 
@@ -11,6 +12,7 @@ const showMsg = () => {
   </div>
 
   <n-button @click="showMsg">naive-ui</n-button>
+  <Demo />
 </template>
 
 <style scoped>
