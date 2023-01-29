@@ -22,6 +22,7 @@ const add = () => {
   <n-button @click="showMsg">naive-ui</n-button>
   <n-button @click="add">Store count +1</n-button>
   <div>{{ demoStore.count}}</div>
+  <router-view />
 </template>
 
 <style scoped>
