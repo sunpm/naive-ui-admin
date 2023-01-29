@@ -5,6 +5,7 @@ import App from './App.vue'
 
 import router, {setupRouter} from "./router";
 
+console.log(import.meta.env.VITE_BASE_API)
 
 async function bootstrap() {
   const app = createApp(App)

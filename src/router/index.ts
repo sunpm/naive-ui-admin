@@ -1,7 +1,5 @@
 import { App } from 'vue';
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import Layout from '@/layout/index.vue'
-import {PageEnum} from "@/enums/pageEnum"
 // 导入路由模块
 import {routes as routeModules} from "./modules";
 import {createRouterGuards} from "@/router/guard"
@@ -19,7 +17,7 @@ routeModuleList.sort(sortRoute);*/
 export const RootRoute: RouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: PageEnum.BASE_HOME,
+  redirect: import.meta.env.VITE_ROUTE_ROOT_PATH,
   meta: {
     title: 'Root',
   },

@@ -15,7 +15,7 @@ export function createRouterGuards(router: Router) {
     // 页面跳转权限处理
     // await createPermissionGuard(to, from, next);
 
-
+    // 如果路由未注册，重新注册路由
     if (registerRouteFresh) {
 
       const routes = flatten(asyncRoutes)
@@ -28,7 +28,6 @@ export function createRouterGuards(router: Router) {
       registerRouteFresh = false
     } else {
       next()
-
     }
   });
   router.afterEach(to => {

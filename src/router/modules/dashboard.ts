@@ -1,6 +1,5 @@
 import {RouteRecordRaw} from "vue-router";
 import Layout from '@/layout/index.vue'
-import {PageEnum} from "@/enums/pageEnum"
 
 const routeName = 'dashboard';
 
@@ -19,7 +18,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     name: routeName,
-    redirect: PageEnum.BASE_HOME_REDIRECT,
+    redirect: import.meta.env.VITE_ROUTE_HOME_PATH,
     component: Layout,
     meta: {
       title: 'Dashboard',
