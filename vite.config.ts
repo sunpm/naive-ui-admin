@@ -28,6 +28,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      '~': path.resolve(process.cwd()),
       '@': path.resolve(__dirname, 'src'),
     }
   }

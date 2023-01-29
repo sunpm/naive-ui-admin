@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.11.1",
+    "axios": "^1.2.6",
     "lodash": "^4.17.21",
     "pinia": "^2.0.29",
     "vue": "^3.2.45",
