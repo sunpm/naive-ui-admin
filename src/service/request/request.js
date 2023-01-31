@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { storageKey } from '@/constants/index.js'
 import { localStg } from '@/utlis/index.js'
+import { handleAxiosError } from '@/service/request/error.js'
 
 const config = {
   // 默认地址
@@ -65,38 +66,8 @@ class RequestHttp {
           return data.data
         }
       },
-      (error) => {
-        const { response } = error
-        if (response != null) {
-          this.handleError(response)
-        }
-        if (!window.navigator.onLine) {
-          // TODO 添加错误信息提示
-          // ElMessage.error('网络连接失败')
-          // 可以跳转到错误页面，也可以不做操作
-          // return router.replace({
-          // path: '/404'
-          // });
-        }
-      },
+      handleAxiosError,
     )
-  }
-
-  handleError(error) {
-    const { status, config } = error
-    switch (status) {
-      case 404:
-        // TODO 添加错误信息提示
-        // ElMessage.error(`找不到请求的API路径：${config.url ?? ''}`)
-        break
-      case 401:
-        // TODO 添加错误信息提示
-        // ElMessage.error('登录失败，请重新登录')
-        break
-      default:
-        $message.error('服务器错误，请求失败！')
-        break
-    }
   }
 
   // 常用方法封装
