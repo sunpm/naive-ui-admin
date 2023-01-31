@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { storageKey } from '@/constants/index.js'
+import { localStg } from '@/utlis/index.js'
 
 const config = {
   // 默认地址
@@ -6,7 +8,7 @@ const config = {
   // 设置超时时间
   timeout: import.meta.env.VITE_REQUEST_TIMEOUT,
   // 跨域时候允许携带凭证
-  withCredentials: true
+  withCredentials: true,
 }
 
 class RequestHttp {
@@ -20,22 +22,21 @@ class RequestHttp {
      * token校验(JWT) : 接受服务器返回的token,存储到vuex/pinia/本地储存当中
      */
     this.service.interceptors.request.use(
-      // @ts-ignore
       (config) => {
-        const userInfo = localStorage.getItem('EnumStorageKey.userInfo') // EnumStorageKey.userInfo 为 userInfo 的缓存 key
-        const {token} = JSON.parse(userInfo ?? '')
-        config.data = Object.assign(config.data ?? {}, {token})
+        const userInfo = localStg.get(storageKey.userInfo) ?? {}
+        const { token } = userInfo
+        config.data = Object.assign(config.data ?? {}, { token })
         return {
           ...config,
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-          }
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
         }
       },
       (error) => {
         // 请求报错
         void Promise.reject(error)
-      }
+      },
     )
 
     /**
@@ -44,8 +45,8 @@ class RequestHttp {
      */
     this.service.interceptors.response.use(
       (response) => {
-        const {data} = response // 解构
-        const {code} = data
+        const { data } = response // 解构
+        const { code } = data
         if (data.code === 10001) {
           // 登录信息失效，应跳转到登录页面，并清空本地的token
           localStorage.setItem('token', '')
@@ -65,7 +66,7 @@ class RequestHttp {
         }
       },
       (error) => {
-        const {response} = error
+        const { response } = error
         if (response != null) {
           this.handleError(response)
         }
@@ -77,12 +78,12 @@ class RequestHttp {
           // path: '/404'
           // });
         }
-      }
+      },
     )
   }
 
   handleError(error) {
-    const {status, config} = error
+    const { status, config } = error
     switch (status) {
       case 404:
         // TODO 添加错误信息提示
@@ -93,15 +94,14 @@ class RequestHttp {
         // ElMessage.error('登录失败，请重新登录')
         break
       default:
-        // TODO 添加错误信息提示
-        // ElMessage.error('请求失败')
+        $message.error('服务器错误，请求失败！')
         break
     }
   }
 
   // 常用方法封装
   async get(url, params) {
-    return await this.service.get(url, {params})
+    return await this.service.get(url, { params })
   }
 
   async post(url, params) {
@@ -113,7 +113,7 @@ class RequestHttp {
   }
 
   async delete(url, params) {
-    return await this.service.delete(url, {params})
+    return await this.service.delete(url, { params })
   }
 }
 

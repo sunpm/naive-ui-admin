@@ -4,14 +4,14 @@
       <h2>栗子律师后台管理系统</h2>
       <form>
         <div class="user-box">
-          <input type="text" v-model="formInline.username" >
+          <input type="text" v-model="formInline.username" required="" >
           <label>账号</label>
         </div>
         <div class="user-box">
-          <input type="password" v-model="formInline.password">
+          <input type="password" v-model="formInline.password" required="">
           <label>密码</label>
         </div>
-        <div class="btn cursor-pointer" @click="onLogin">
+        <div class="btn cursor-pointer select-none" @click="onLogin">
           <span></span>
           <span></span>
           <span></span>
@@ -25,34 +25,27 @@
 
 <script setup>
 import {useRouterPush} from "@/composables"
+import { useAuthStore } from '@/store/modules/index.js'
 
 const { toHome } = useRouterPush()
 const formInline = reactive({
-  username: '',
-  password: ''
+  username: '1',
+  password: '1'
 })
 
 
 const onLogin = async () => {
   const { username, password } = formInline
   if (!username) {
-    /*ElMessage({
-      message: '请输入用户名',
-      type: 'error',
-      duration: 2 * 1000
-    })*/
+    $message.error('请输入账号')
     return false
   } else if (!password) {
-    /*ElMessage({
-      message: '请输入密码',
-      type: 'error',
-      duration: 2 * 1000
-    })*/
+    $message.error('请输入密码')
     return false
   }
-  // const store = useUserStore()
-  // await store.login(formInline)
-  toHome()
+  const authStore = useAuthStore()
+  await authStore.login(formInline)
+  // toHome()
 }
 </script>
 
