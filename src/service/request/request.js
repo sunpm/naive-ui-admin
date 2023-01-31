@@ -58,8 +58,7 @@ class RequestHttp {
         }
         // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
         if (data.code !== 1) {
-          // TODO 添加错误信息提示
-          // ElMessage.error(data.msg) // 此处也可以使用组件提示报错信息
+          $message.error(data.msg) // 此处也可以使用组件提示报错信息
           return Promise.reject(data)
         }
         if (code === 1) {

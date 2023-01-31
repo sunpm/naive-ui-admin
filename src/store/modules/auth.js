@@ -11,12 +11,24 @@ export const useAuthStore = defineStore('auth', {
     indentify: [],
   }),
   actions: {
+    /**
+     * 初始化持久化用户数据
+     */
+    initUserInfo() {
+      const info = localStg.get(storageKey.userInfo)
+      this.userInfo = info
+      this.token = info?.token ?? ''
+    },
+    /**
+     * 登陆
+     * @param formInline
+     * @returns {Promise<unknown>}
+     */
     async login(formInline) {
       return await new Promise(async (resolve, reject) => {
         const result = await fetchLogin(formInline)
         this.userInfo = localStg.set(storageKey.userInfo, result)
-        console.log(this.userInfo)
-        this.token = result?.token ?? ''
+        this.initUserInfo()
         resolve(result)
       })
     },
