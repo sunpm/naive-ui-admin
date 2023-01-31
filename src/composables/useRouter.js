@@ -1,6 +1,5 @@
 import { useRouter } from 'vue-router'
-import type { RouteLocationRaw } from 'vue-router'
-import globalRouter from '@/router'
+import globalRouter from '@/router/index.js'
 
 /**
  * 路由跳转
@@ -15,7 +14,7 @@ export function useRouterPush (isSetup = true) {
    * @param to 需要跳转的路由
    * @param newTab 是否在新的浏览器Tab标签打开
    */
-  const routerPush = (to: RouteLocationRaw, newTab = false) => {
+  const routerPush = (to, newTab = false) => {
     if (newTab) {
       const routerData = router.resolve(to)
       window.open(routerData.href, '_blank')
@@ -43,7 +42,7 @@ export function useRouterPush (isSetup = true) {
   const toLoginRedirect = () => {
     const { query } = route.value
     if (query?.redirect !== undefined) {
-      routerPush(query.redirect as string)
+      routerPush(query.redirect)
     } else {
       toHome()
     }

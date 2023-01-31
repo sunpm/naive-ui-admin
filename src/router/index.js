@@ -1,8 +1,7 @@
-import { App } from 'vue';
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {createRouter, createWebHistory,} from 'vue-router'
 // 导入路由模块
-import {routes as routeModules} from "./modules";
-import {createRouterGuards} from "@/router/guard"
+import {routes as routeModules} from "./modules/index.js";
+import {createRouterGuards} from "@/router/guard/index.js"
 
 
 
@@ -14,7 +13,7 @@ function sortRoute(a, b) {
 
 routeModuleList.sort(sortRoute);*/
 
-export const RootRoute: RouteRecordRaw = {
+export const RootRoute = {
   path: '/',
   name: 'Root',
   redirect: import.meta.env.VITE_ROUTE_ROOT_PATH,
@@ -23,7 +22,7 @@ export const RootRoute: RouteRecordRaw = {
   },
 };
 
-const LoginRoute: RouteRecordRaw[] = [
+const LoginRoute = [
   {
     path: '/login',
     name: 'Login',
@@ -33,12 +32,11 @@ const LoginRoute: RouteRecordRaw[] = [
     },
   }
 ]
-
 //需要验证权限
 export const asyncRoutes = [...routeModules];
 
 //普通路由 无需验证权限
-export const constantRouter: RouteRecordRaw[] = [...LoginRoute, RootRoute];
+export const constantRouter = [...LoginRoute, RootRoute];
 // export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
 
 const router = createRouter({
@@ -50,7 +48,7 @@ const router = createRouter({
 
 
 
-export function setupRouter(app: App) {
+export function setupRouter(app) {
   app.use(router);
   // 创建路由守卫
   createRouterGuards(router);

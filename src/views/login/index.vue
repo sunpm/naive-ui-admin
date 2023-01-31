@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {useRouterPush} from "@/composables"
 
 const { toHome } = useRouterPush()

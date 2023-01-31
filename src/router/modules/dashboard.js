@@ -1,4 +1,3 @@
-import {RouteRecordRaw} from "vue-router";
 import Layout from '@/layout/index.vue'
 
 const routeName = 'dashboard';
@@ -14,7 +13,7 @@ const routeName = 'dashboard';
  * @param meta.keepAlive 缓存该路由
  * @param meta.sort 排序越小越排前
  * */
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
     path: '/dashboard',
     name: routeName,

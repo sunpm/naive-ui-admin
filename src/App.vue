@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 
 
 const showMsg = () => {
@@ -9,12 +9,12 @@ const showMsg = () => {
 </script>
 
 <template>
-<!--  <div class="border p-4">
-    测试  windicss
-  </div>
+  <!--  <div class="border p-4">
+      测试  windicss
+    </div>
 
-  <n-button @click="showMsg">naive-ui</n-button>
-  <div>{{ demoStore.count}}</div>-->
+    <n-button @click="showMsg">naive-ui</n-button>
+    <div>{{ demoStore.count}}</div>-->
   <router-view />
 </template>
 

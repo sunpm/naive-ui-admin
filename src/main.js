@@ -1,14 +1,17 @@
-import {createApp} from 'vue'
-import 'virtual:windi.css'
-import pinia from '@/store'
+import { createApp } from 'vue'
 import App from './App.vue'
+import './index.css'
 
-import router, {setupRouter} from "./router";
+import { setupStore } from '@/store';
 
-console.log(import.meta.env.VITE_BASE_API)
+import router, {setupRouter} from "@/router";
+
 
 async function bootstrap() {
   const app = createApp(App)
+
+  // 挂载状态管理
+  setupStore(app);
 
   // 挂载路由
   setupRouter(app);
@@ -17,10 +20,8 @@ async function bootstrap() {
   // https://router.vuejs.org/api/interfaces/router.html#isready
   await router.isReady();
 
-  app
-    .use(pinia)
-    .mount('#app')
+  app.mount('#app')
 }
 
 
-void bootstrap();
+void bootstrap()
