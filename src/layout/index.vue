@@ -1,13 +1,13 @@
 <template>
-  <el-container class="h-full">
+  <el-container class="h-screen">
     <el-aside
         content-style="padding: 24px;"
         :native-scrollbar="false"
         bordered
     >
       <el-scrollbar>
-        <Logo/>
         <AsideMenu :isCollapse="false">
+          <Logo/>
           <AsideMenuItem v-for="route in menuOptions" :key="route.id" :menu="route" :base-path="route.path"
                          :isCollapse="false"/>
         </AsideMenu>
