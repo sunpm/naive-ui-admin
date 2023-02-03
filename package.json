@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.2.6",
     "dayjs": "^1.11.7",
+    "element-plus": "^2.2.29",
     "lodash": "^4.17.21",
     "pinia": "^2.0.29",
     "vue": "^3.2.45",
@@ -19,7 +20,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
-    "naive-ui": "^2.34.3",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "unplugin-auto-import": "^0.13.0",

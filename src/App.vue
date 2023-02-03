@@ -1,21 +1,17 @@
 <script setup>
-import { dateZhCN, zhCN } from 'naive-ui';
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
 
-const showMsg = () => {
-  const {message} = createDiscreteApi(['message'])
-  message.success('Hello World')
-}
 
 </script>
 
 <template>
-  <n-config-provider
-      :locale="zhCN"
-      :date-locale="dateZhCN"
+  <el-config-provider
+      :locale="zhCn"
       class="h-full"
   >
     <router-view />
-  </n-config-provider>
+  </el-config-provider>
 </template>
 
 <style scoped>

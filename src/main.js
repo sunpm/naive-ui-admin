@@ -5,7 +5,7 @@ import './index.css'
 import { setupStore } from '@/store';
 
 import router, {setupRouter} from "@/router";
-import { setupNaiveDiscreteApi } from '@/plugins/index.js'
+// import { setupNaiveDiscreteApi } from '@/plugins/index.js'
 
 
 async function bootstrap() {
@@ -15,7 +15,7 @@ async function bootstrap() {
   setupStore(app);
 
   // 挂载 naive-ui 脱离上下文的 Api
-  setupNaiveDiscreteApi();
+  // setupNaiveDiscreteApi();
 
   // 挂载路由
   setupRouter(app);
