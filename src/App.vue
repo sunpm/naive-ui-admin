@@ -1,5 +1,5 @@
 <script setup>
-
+import { dateZhCN, zhCN } from 'naive-ui';
 
 const showMsg = () => {
   const {message} = createDiscreteApi(['message'])
@@ -9,13 +9,13 @@ const showMsg = () => {
 </script>
 
 <template>
-  <!--  <div class="border p-4">
-      测试  windicss
-    </div>
-
-    <n-button @click="showMsg">naive-ui</n-button>
-    <div>{{ demoStore.count}}</div>-->
-  <router-view />
+  <n-config-provider
+      :locale="zhCN"
+      :date-locale="dateZhCN"
+      class="h-full"
+  >
+    <router-view />
+  </n-config-provider>
 </template>
 
 <style scoped>
