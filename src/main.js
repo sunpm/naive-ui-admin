@@ -5,7 +5,7 @@ import './index.css'
 import { setupStore } from '@/store';
 
 import router, {setupRouter} from "@/router";
-// import { setupNaiveDiscreteApi } from '@/plugins/index.js'
+import { setupElementPlusIcons } from '@/plugins/elementPlusIcons.js'
 
 
 async function bootstrap() {
@@ -16,6 +16,9 @@ async function bootstrap() {
 
   // 挂载 naive-ui 脱离上下文的 Api
   // setupNaiveDiscreteApi();
+
+  // 注册所有图标
+  setupElementPlusIcons(app)
 
   // 挂载路由
   setupRouter(app);
