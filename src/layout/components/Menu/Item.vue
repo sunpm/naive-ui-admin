@@ -32,7 +32,7 @@ const props = defineProps({
     default: '',
   },
 })
-console.log(props.menu)
+// console.log(props.menu)
 </script>
 
 <style scoped>

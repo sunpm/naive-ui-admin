@@ -8,9 +8,10 @@ import en from 'element-plus/dist/locale/en.mjs'
 <template>
   <el-config-provider
       :locale="zhCn"
-      class="h-full"
   >
-    <router-view />
+    <div>
+      <router-view />
+    </div>
   </el-config-provider>
 </template>
 
